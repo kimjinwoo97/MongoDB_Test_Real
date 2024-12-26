@@ -1,0 +1,11 @@
+// 색상 관련 변수
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$heading-color: #333;
+$background-color: #f4f4f4;
+
+// SCSS 변수로 브레이크포인트 정의(min-width)
+$breakpoint-sm: 576px; // 작은 화면 (모바일)
+$breakpoint-md: 768px; // 중간 화면 (태블릿)
+$breakpoint-lg: 992px; // 큰 화면 (데스크탑)
+$breakpoint-xl: 1200px; // 초대형 화면 (대형 데스크탑)

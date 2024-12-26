@@ -1,0 +1,20 @@
+.pc_item_container {
+  font-size: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: gray;
+
+  .pc_item__time {
+    color: white;
+  }
+
+  .pc_item__price {
+    font-size: inherit;
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid black;
+    background-color: lightgray;
+  }
+}

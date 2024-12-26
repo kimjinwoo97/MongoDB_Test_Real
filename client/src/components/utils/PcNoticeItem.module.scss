@@ -1,0 +1,15 @@
+.notice_item_container {
+  display: flex;
+  flex-direction: column;
+
+  .notice_title {
+    font-size: 30px;
+    text-align: center;
+    color: blue;
+  }
+
+  .notice_content {
+    font-size: 20px;
+    text-align: center;
+  }
+}

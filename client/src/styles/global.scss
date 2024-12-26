@@ -1,0 +1,96 @@
+@use "sass:color";
+@use "./variables"; // @import 대신 @use 사용
+
+* {
+  box-sizing: border-box;
+}
+
+// Global styles
+body {
+  font-family: Arial, sans-serif;
+}
+
+nav {
+  border-bottom: 1px solid gray;
+  padding: 10px;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+input {
+  display: inline-block;
+  outline: none;
+  border: none;
+  font-size: 17px;
+}
+
+// Utility classes
+.pointer {
+  cursor: pointer;
+}
+
+// Button styles
+.btn {
+  background-color: variables.$secondary-color; // 변수 접근 방식 수정
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+
+  &:hover {
+    background-color: color.scale(
+      variables.$secondary-color,
+      $lightness: -10%
+    ); // darken() 대체
+  }
+}
+
+// Text styles
+.text-gray {
+  color: gray;
+
+  &:hover {
+    color: rgb(88, 86, 86);
+  }
+}
+
+// Flexbox utility class
+.flex {
+  display: flex;
+}
+
+// Container styles
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 10px;
+}
+
+.input-container {
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 45px;
+  border: 1px solid black;
+  padding: 5px 10px;
+  margin: 10px auto 15px;
+}
+
+.link-container {
+  display: flex;
+  margin: auto;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.border-gray {
+  border: 1px solid gray;
+}
