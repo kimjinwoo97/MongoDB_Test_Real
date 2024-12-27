@@ -6,8 +6,10 @@ import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.exam.test.demo.dto.SeatDto;
+import com.exam.test.demo.exception.CustomException;
 import com.exam.test.demo.res.ResponseDto;
 import com.exam.test.demo.seat.domain.Seat;
 import com.exam.test.demo.seat.repository.SeatRepository;
@@ -42,5 +44,17 @@ public class SeatService {
     Seat seat = seatRepository.save(modelMapper.map(seatDto, Seat.class));
 
     return new ResponseDto<>("", seat.getSeatNumber() + "번 좌석이 추가되었습니다.");
+  }
+
+  @Transactional
+  public ResponseDto<String> updateSeatOne(SeatDto seatDto) throws CustomException {
+    if (!seatRepository.existsById(seatDto.getId())) {
+      throw new CustomException("수정하려는 좌석을 찾을 수 없습니다.", "400");
+    }
+
+    Seat seat = modelMapper.map(seatDto, Seat.class);
+    seatRepository.save(seat);
+
+    return new ResponseDto<>("", "좌석에 대한 정보가 수정되었습니다.");
   }
 }

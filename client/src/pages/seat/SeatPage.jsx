@@ -3,9 +3,12 @@ import Api from "../../axios/api";
 import { toast } from "react-toastify";
 import SeatItem from "../../components/seat/SeatItem";
 import { Link } from "react-router-dom";
-import "./Seat.scss";
+import "./SeatPage.scss";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../atoms/userAtom";
 
 const SeatPage = () => {
+  const { user } = useRecoilValue(userState);
   const [seatList, setSeatList] = useState([]); // 데이터를 사용하기 위한 getter, setter
 
   // 가장 먼저 해야하는 것
@@ -27,12 +30,20 @@ const SeatPage = () => {
 
   // 컴포넌트화 시킴
   const seatListEls = seatList.map((seat) => (
-    <SeatItem key={seat.id} seat={seat} />
+    <SeatItem
+      key={seat.id}
+      seat={seat}
+      isAdmin={user.roles.includes("ROLE_ADMIN")}
+    />
   ));
 
   return (
     <div>
-      <Link to="/seat-add">좌석 추가</Link>
+      <aside>
+        {user.roles.includes("ROLE_ADMIN") ? (
+          <Link to="/seat-add">좌석 추가</Link>
+        ) : null}
+      </aside>
       <div className="seat-list">{seatListEls}</div>
     </div>
   );
