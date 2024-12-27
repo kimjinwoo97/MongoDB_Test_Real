@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import Api from "../../axios/api";
 import { toast } from "react-toastify";
-import { useUser } from "../../context/UserContext";
 
 const SeatAddPage = () => {
   const [newSeat, setNewSeat] = useState({ seatNumber: "", cost: "" });
-  const { user } = useUser();
-  console.log(user);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

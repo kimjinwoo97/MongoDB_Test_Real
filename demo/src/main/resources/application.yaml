@@ -28,4 +28,4 @@ custom:
 logging:
   level:
     root: INFO
-    "[com.exam.mongo.test.mongo_test]": DEBUG
+    "[com.exam.test.demo]": DEBUG

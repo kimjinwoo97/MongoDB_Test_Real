@@ -3,6 +3,7 @@ import Api from "../../axios/api";
 import { toast } from "react-toastify";
 import SeatItem from "../../components/seat/SeatItem";
 import { Link } from "react-router-dom";
+import "./Seat.scss";
 
 const SeatPage = () => {
   const [seatList, setSeatList] = useState([]); // 데이터를 사용하기 위한 getter, setter
@@ -32,7 +33,7 @@ const SeatPage = () => {
   return (
     <div>
       <Link to="/seat-add">좌석 추가</Link>
-      {seatListEls}
+      <div className="seat-list">{seatListEls}</div>
     </div>
   );
 };

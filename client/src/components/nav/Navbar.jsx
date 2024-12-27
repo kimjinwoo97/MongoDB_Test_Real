@@ -1,12 +1,19 @@
 import React from "react";
 import AdminNav from "./AdminNav";
 import UserNav from "./UserNav";
-import { useUser } from "../../context/UserContext";
+import Logo from "../Logo";
+import { useRecoilValue } from "recoil";
+import { userState } from "../../atoms/userAtom";
 
 const Navbar = () => {
-  const { user } = useUser(); // 사용자 정보를 가져옵니다.
+  const { user } = useRecoilValue(userState); // 사용자 정보를 가져옵니다.
 
-  return <nav>{user ? renderUserNav(user.roles) : null}</nav>;
+  return (
+    <nav className="nav">
+      <Logo />
+      {user ? renderUserNav(user.roles) : null}
+    </nav>
+  );
 };
 
 // 역할에 따라 네비게이션을 렌더링

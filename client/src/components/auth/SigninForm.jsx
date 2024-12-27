@@ -1,12 +1,14 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { useUser } from "../../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import Api from "../../axios/api";
 import { toast } from "react-toastify";
+import { useSetRecoilState } from "recoil";
+import { userState } from "../../atoms/userAtom";
 
 const SigninForm = () => {
-  const { setUser } = useUser(); // 사용자 정보 설정 함수 가져오기
+  const setUserInfo = useSetRecoilState(userState); // 사용자 정보 설정 함수 가져오기
+
   const {
     register,
     handleSubmit,
@@ -28,10 +30,13 @@ const SigninForm = () => {
 
       //서버에서 반환된 데이터에서 액세스 토큰과 유저 토큰 추출
       const accessToken = res.data.token; // 액세스 토큰
-      const userInfo = res.data.data;
+      const userInfoData = res.data.data;
 
       localStorage.setItem("token", accessToken); // JWT 저장
-      setUser({ userName: userInfo.userName, roles: userInfo.roles }); // 사용자 정보 업데이트
+      setUserInfo({
+        user: { userName: userInfoData.userName, roles: userInfoData.roles },
+        loading: false,
+      }); // 사용자 정보 업데이트
 
       navigate("/home");
     } catch (error) {
